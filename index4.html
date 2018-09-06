@@ -85,10 +85,10 @@
                 ctx.save();
                 ctx.beginPath();
                 console.log(p1,p2,p3)
-                ctx.moveTo(kk(p1.x),kk(p1.y));
-                ctx.lineTo(kk(p2.x),kk(p2.y));
-                ctx.lineTo(kk(p3.x),kk(p3.y));
-                ctx.lineTo(kk(p1.x),kk(p1.y));
+                ctx.moveTo(p1.x,p1.y);
+                ctx.lineTo(p2.x,p2.y);
+                ctx.lineTo(p3.x,p3.y);
+                ctx.lineTo(p1.x,p1.y);
                 ctx.stroke();
                 ctx.restore()
             }, nextTime);
@@ -102,15 +102,6 @@
             drawTring(ctx,p3n,p2n,p3 , level - 1);
             drawTring(ctx,p1,p1n,p3n , level - 1);
 
-        }
-
-        function kk(num) {
-            return num;
-            num = Math.round(num)
-            if ((num%2) ==0) {
-                return num;
-            }
-            return num+0.5;
         }
 
         function findMiddlePoint(p1,p2) {
@@ -139,7 +130,7 @@
         let p3 = new Point(w, h);
 
         // drawTring_inside(ctx,p1,p2,p3 , 5);
-        drawTring(ctx,p1,p2,p3 , 7);
+        drawTring(ctx,p1,p2,p3 , 4);
 
 
         ctx.drawArrays()

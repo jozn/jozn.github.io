@@ -77,19 +77,26 @@
         }
 
         let nextTime = 0;
-        function drawTring(ctx,p1,p2,p3, level) {
+        function drawTring(ctx,p1,p2,p3, level,first) {
+
             if( level == 0 ) return;
 
             nextTime += 10;
             setTimeout(function () {
+                /*if(first == true) {
+                    ctx.fillStyle = 'red';
+                }else {
+                    ctx.fillStyle = 'white';
+                }*/
+                ctx.fillStyle = 'white';
                 ctx.save();
                 ctx.beginPath();
                 console.log(p1,p2,p3)
-                ctx.moveTo(kk(p1.x),kk(p1.y));
-                ctx.lineTo(kk(p2.x),kk(p2.y));
-                ctx.lineTo(kk(p3.x),kk(p3.y));
-                ctx.lineTo(kk(p1.x),kk(p1.y));
-                ctx.stroke();
+                ctx.moveTo(p1.x,p1.y);
+                ctx.lineTo(p2.x,p2.y);
+                ctx.lineTo(p3.x,p3.y);
+                ctx.lineTo(p1.x,p1.y);
+                ctx.fill();
                 ctx.restore()
             }, nextTime);
 
@@ -104,22 +111,13 @@
 
         }
 
-        function kk(num) {
-            return num;
-            num = Math.round(num)
-            if ((num%2) ==0) {
-                return num;
-            }
-            return num+0.5;
-        }
-
         function findMiddlePoint(p1,p2) {
             let pNew = new Point( (p1.x + p2.x) / 2 , (p1.y + p2.y) / 2 );
             return pNew;
         }
         let canves1 = document.querySelector("#canves1");
         let ctx = canves1.getContext("2d");
-        // ctx.fillStyle = 'green';
+         // ctx.fillStyle = 'green';
         // ctx.fillRect(10, 10, 100, 100);
         var gradient=ctx.createLinearGradient(0,0,170,0);
         gradient.addColorStop("0","magenta");
@@ -131,7 +129,7 @@
         ctx.lineWidth = 1;
         ctx.lineCap = "round";
 
-        ctx.strokeStyle = "#ff3d62";//gradient;
+        // ctx.strokeStyle = "#ff3d62";//gradient;
         var w = canves1.width ;
         var h = canves1.height ;
         let p1 = new Point(w/2,0);
@@ -139,7 +137,7 @@
         let p3 = new Point(w, h);
 
         // drawTring_inside(ctx,p1,p2,p3 , 5);
-        drawTring(ctx,p1,p2,p3 , 7);
+        drawTring(ctx,p1,p2,p3 , 4, true);
 
 
         ctx.drawArrays()
